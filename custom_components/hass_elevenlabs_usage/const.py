@@ -3,7 +3,7 @@
 DOMAIN = "hass_elevenlabs_usage"
 
 # API
-SUBSCRIPTION_API_URL = "https://api.elevenlabs.io/v1/user/subscription"
+USER_API_URL = "https://api.elevenlabs.io/v1/user"
 ANALYTICS_API_URL = (
     "https://api.elevenlabs.io/v1/workspace/analytics/query/usage-by-product-over-time"
 )

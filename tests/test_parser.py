@@ -72,7 +72,7 @@ def test_parse_single_row():
 
 
 def test_build_data_maps_all_fields():
-    subscription = {"tier": "creator"}
+    subscription = {"subscription": {"tier": "creator"}}
     today_raw = {
         "columns": ["timestamp", "credits", "request_count"],
         "column_units": ["ms", "credits", None],

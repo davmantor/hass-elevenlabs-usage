@@ -21,7 +21,7 @@ from .const import (
     CONF_UPDATE_INTERVAL,
     DEFAULT_UPDATE_INTERVAL,
     DOMAIN,
-    SUBSCRIPTION_API_URL,
+    USER_API_URL,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -96,7 +96,7 @@ class ElevenLabsUsageConfigFlow(ConfigFlow, domain=DOMAIN):
         try:
             session = aiohttp_client.async_get_clientsession(self.hass)
             resp = await session.get(
-                SUBSCRIPTION_API_URL,
+                USER_API_URL,
                 headers={"xi-api-key": api_key},
                 timeout=aiohttp.ClientTimeout(total=15),
             )
@@ -105,7 +105,8 @@ class ElevenLabsUsageConfigFlow(ConfigFlow, domain=DOMAIN):
             if not resp.ok:
                 return None, "cannot_connect"
             data = await resp.json()
-            return data.get("tier"), None
+            tier = data.get("subscription", {}).get("tier")
+            return tier, None
         except aiohttp.ClientError:
             _LOGGER.exception("Error validating ElevenLabs API key")
             return None, "cannot_connect"

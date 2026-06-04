@@ -20,7 +20,7 @@ from .const import (
     CONF_UPDATE_INTERVAL,
     DEFAULT_UPDATE_INTERVAL,
     DOMAIN,
-    SUBSCRIPTION_API_URL,
+    USER_API_URL,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -78,14 +78,14 @@ class ElevenLabsUsageCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
         try:
             resp = await session.get(
-                SUBSCRIPTION_API_URL,
+                USER_API_URL,
                 headers=headers,
                 timeout=aiohttp.ClientTimeout(total=15),
             )
             if resp.status == 401:
                 raise ConfigEntryAuthFailed("ElevenLabs API key is invalid or revoked")
             resp.raise_for_status()
-            subscription = await resp.json()
+            user_data = await resp.json()
 
             now = datetime.now(timezone.utc)
             today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -101,7 +101,7 @@ class ElevenLabsUsageCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         except aiohttp.ClientError as err:
             raise UpdateFailed(f"Error fetching ElevenLabs data: {err}") from err
 
-        return _build_data(subscription, today_raw, week_raw, month_raw)
+        return _build_data(user_data, today_raw, week_raw, month_raw)
 
     async def _fetch_analytics(
         self,
@@ -129,14 +129,14 @@ class ElevenLabsUsageCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
 
 def _build_data(
-    subscription: dict[str, Any],
+    user_data: dict[str, Any],
     today_raw: dict[str, Any],
     week_raw: dict[str, Any],
     month_raw: dict[str, Any],
 ) -> dict[str, Any]:
     """Build the flat sensor data dict from all API responses."""
     data: dict[str, Any] = {}
-    tier = subscription.get("tier")
+    tier = user_data.get("subscription", {}).get("tier")
     if tier is not None:
         data["subscription_tier"] = tier
 
