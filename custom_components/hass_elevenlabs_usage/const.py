@@ -22,5 +22,7 @@ SENSOR_DEFINITIONS = [
     ("credits_used_month", "Credits Used This Month", "credits", "mdi:calendar-month", None),
     ("calls_today", "API Calls Today", "calls", "mdi:api", None),
     ("calls_week", "API Calls This Week", "calls", "mdi:calendar-week", None),
+    ("characters_remaining", "Characters Remaining", "characters", "mdi:alpha-c-circle", None),
+    ("character_limit", "Character Limit", "characters", "mdi:alpha-c-circle-outline", None),
     ("api_error", "API Error", "errors", "mdi:alert-circle", None),
 ]

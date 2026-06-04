@@ -150,6 +150,14 @@ def _build_data(
     data["calls_week"] = week_calls
     data["credits_used_month"] = month_credits
 
+    subscription = user_data.get("subscription", {})
+    char_limit = subscription.get("character_limit")
+    char_count = subscription.get("character_count")
+    if char_limit is not None:
+        data["character_limit"] = char_limit
+    if char_limit is not None and char_count is not None:
+        data["characters_remaining"] = char_limit - char_count
+
     return data
 
 
