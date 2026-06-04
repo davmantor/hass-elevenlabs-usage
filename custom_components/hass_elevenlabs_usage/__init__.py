@@ -140,7 +140,7 @@ def _build_data(
 
     today_credits, today_calls = _parse_analytics(today_raw)
     week_credits, week_calls = _parse_analytics(week_raw)
-    month_credits, _ = _parse_analytics(month_raw)
+    month_credits, _ = _parse_analytics(month_raw)  # calls_month sensor not defined
 
     data["credits_used_today"] = today_credits
     data["calls_today"] = today_calls
@@ -203,10 +203,10 @@ def _parse_analytics(raw: dict[str, Any]) -> tuple[float | None, int | None]:
 
     calls_total: int | None = None
     if calls_idx is not None:
-        calls_total = sum(
+        calls_total = int(sum(
             row[calls_idx]
             for row in rows
-            if calls_idx < len(row) and isinstance(row[calls_idx], int)
-        )
+            if calls_idx < len(row) and isinstance(row[calls_idx], (int, float))
+        ))
 
     return credits_total, calls_total
