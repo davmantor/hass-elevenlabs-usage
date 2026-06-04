@@ -27,7 +27,7 @@ _LOGGER = logging.getLogger(__name__)
 
 PLATFORMS = [Platform.SENSOR]
 
-ElevenLabsUsageConfigEntry = ConfigEntry
+type ElevenLabsUsageConfigEntry = ConfigEntry[ElevenLabsUsageCoordinator]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ElevenLabsUsageConfigEntry) -> bool:
