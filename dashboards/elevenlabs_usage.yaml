@@ -1,0 +1,32 @@
+views:
+  - title: ElevenLabs Usage
+    cards:
+      - type: history-graph
+        title: Credit Usage
+        hours_to_show: 168
+        entities:
+          - entity: sensor.elevenlabs_usage_credits_used_today
+            name: Today
+          - entity: sensor.elevenlabs_usage_credits_used_this_week
+            name: This Week
+          - entity: sensor.elevenlabs_usage_credits_used_this_month
+            name: This Month
+
+      - type: entities
+        title: ElevenLabs API Usage
+        entities:
+          - entity: sensor.elevenlabs_usage_subscription_tier
+            name: Subscription Tier
+          - entity: sensor.elevenlabs_usage_credits_used_today
+            name: Credits Used Today
+          - entity: sensor.elevenlabs_usage_credits_used_this_week
+            name: Credits Used This Week
+          - entity: sensor.elevenlabs_usage_credits_used_this_month
+            name: Credits Used This Month
+          - entity: sensor.elevenlabs_usage_api_calls_today
+            name: API Calls Today
+          - entity: sensor.elevenlabs_usage_api_calls_this_week
+            name: API Calls This Week
+          - entity: sensor.elevenlabs_usage_api_error
+            name: API Error Status
+            secondary_info: last-updated
