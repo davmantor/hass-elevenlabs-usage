@@ -1,0 +1,11 @@
+{
+  "domain": "hass_elevenlabs_usage",
+  "name": "ElevenLabs Usage",
+  "codeowners": ["@davmantor"],
+  "config_flow": true,
+  "documentation": "https://github.com/davmantor/hass-elevenlabs-usage",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/davmantor/hass-elevenlabs-usage/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
