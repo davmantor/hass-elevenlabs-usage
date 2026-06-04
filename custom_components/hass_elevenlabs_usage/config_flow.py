@@ -18,7 +18,6 @@ from homeassistant.helpers import aiohttp_client
 
 from .const import (
     CONF_API_KEY,
-    CONF_SUBSCRIPTION_TIER,
     CONF_UPDATE_INTERVAL,
     DEFAULT_UPDATE_INTERVAL,
     DOMAIN,
@@ -51,7 +50,6 @@ class ElevenLabsUsageConfigFlow(ConfigFlow, domain=DOMAIN):
                     title=f"ElevenLabs Usage ({tier})" if tier else "ElevenLabs Usage",
                     data={
                         CONF_API_KEY: api_key,
-                        CONF_SUBSCRIPTION_TIER: tier,
                     },
                     options={
                         CONF_UPDATE_INTERVAL: DEFAULT_UPDATE_INTERVAL,
@@ -84,7 +82,6 @@ class ElevenLabsUsageConfigFlow(ConfigFlow, domain=DOMAIN):
                     self._get_reauth_entry(),
                     data_updates={
                         CONF_API_KEY: api_key,
-                        CONF_SUBSCRIPTION_TIER: tier,
                     },
                 )
 

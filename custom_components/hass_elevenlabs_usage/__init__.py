@@ -136,7 +136,9 @@ def _build_data(
 ) -> dict[str, Any]:
     """Build the flat sensor data dict from all API responses."""
     data: dict[str, Any] = {}
-    data["subscription_tier"] = subscription.get("tier")
+    tier = subscription.get("tier")
+    if tier is not None:
+        data["subscription_tier"] = tier
 
     today_credits, today_calls = _parse_analytics(today_raw)
     week_credits, week_calls = _parse_analytics(week_raw)

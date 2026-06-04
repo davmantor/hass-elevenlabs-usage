@@ -101,6 +101,6 @@ def test_build_data_handles_missing_tier():
     subscription = {}
     empty = {"columns": [], "column_units": [], "rows": []}
     data = _build_data(subscription, empty, empty, empty)
-    assert data["subscription_tier"] is None
+    assert "subscription_tier" not in data
     assert data["credits_used_today"] is None
     assert data["calls_today"] is None

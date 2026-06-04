@@ -14,8 +14,6 @@ DEFAULT_UPDATE_INTERVAL = 300  # seconds
 # Config keys
 CONF_API_KEY = "api_key"
 CONF_UPDATE_INTERVAL = "update_interval"
-CONF_SUBSCRIPTION_TIER = "subscription_tier"
-
 # Sensor definitions: (key, name, unit, icon, device_class)
 SENSOR_DEFINITIONS = [
     ("subscription_tier", "Subscription Tier", None, "mdi:account-star", None),
